@@ -24,4 +24,8 @@ export class UtilsService {
 
     toast.present()
   }
+
+  saveLocalStorage(key: string, value: any){
+    return localStorage.setItem(key, JSON.stringify(value))
+  }
 }
