@@ -1,5 +1,5 @@
 ion-content {
-    --background: #9705c0;
+    --background: #05c0b7;
     --color: var(--ion-color-primary-contrast);
     --padding-top: 20px;
 }
@@ -8,17 +8,17 @@ ion-item {
     font-size: 14px;
     --color: #fff;
     // --background: var(--ion-color-primary);
-    --background: #9705c0;
+    --background: #05c0b7;
 
     ion-icon {
         color: #fff
     }
 
     &.active {
-        color: #11c005;
+        color: #000000;
 
         ion-icon {
-            color: #11c005;
+            color: #000000;
         }
     }
 }

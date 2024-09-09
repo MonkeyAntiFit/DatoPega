@@ -25,7 +25,7 @@ export class AuthPage implements OnInit {
 
   ngOnInit() {
   }
-
+  //agrega las cuentas a la base de datos y busca si estos existen para iniciar sesion
   async submit() {
     if(this.form.valid){
       const loading = await this.utilsService.loading();
@@ -34,7 +34,6 @@ export class AuthPage implements OnInit {
       this.firebaseService.signIn(this.form.value as User)
         .then(resp => {
           this.getUserInfo(resp.user.uid);
-          
         }).catch(error => {
           console.log(error);
           this.utilsService.presentToast({

@@ -10,17 +10,18 @@ import { doc, getDoc, getFirestore, setDoc } from '@angular/fire/firestore';
 })
 export class FirebaseService {
 
+  //importar los modulos
   auth = inject(AngularFireAuth);
   firestore = inject(AngularFirestore);
 
   getAuth() {
     return getAuth();
   }
-
+  //guarda el usuario
   signIn(user: User) {
     return signInWithEmailAndPassword(getAuth(), user.email, user.password);
   }
-
+  //llama al usuario valido
   signUp(user: User) {
     return createUserWithEmailAndPassword(getAuth(), user.email, user.password);
   }

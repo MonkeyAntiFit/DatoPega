@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: '',
     component: AuthPage
-  },  {
+  },
+  {
     path: 'forgot-password',
     loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
