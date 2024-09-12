@@ -9,7 +9,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-// importacion de la base de datos
 export const firebaseConfig = {
   apiKey: "AIzaSyDpoQN4HSRw7CkTDqLYAm7btvGiJ2d3QAo",
   authDomain: "datopega.firebaseapp.com",
