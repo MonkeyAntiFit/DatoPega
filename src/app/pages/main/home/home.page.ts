@@ -36,6 +36,8 @@ export class HomePage implements OnInit {
       cssClass: 'add-update-modal',
       componentProps: { employee }
     })
+
+    if(modal) this.getEmployee()
   }
 
   user(): User {

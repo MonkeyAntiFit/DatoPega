@@ -18,10 +18,13 @@ export class UtilsService {
     this.router.navigateByUrl(url)
   }
 
+  //Animacion de Spinner, que se llama la funcion loading en cada vista que se recargara.
   loading(){
     return this.loadingCtrl.create({ spinner: 'crescent' })
   }
 
+  // Animacion Toast que aparece al ingresar despues 
+  // de iniciar sesion.
   async presentToast(opts?: ToastOptions) {
     const toast = await this.toastCtrl.create(opts);
 
@@ -36,6 +39,7 @@ export class UtilsService {
     return JSON.parse(localStorage.getItem(key));
   }
 
+  // Animacion tipo Modal para agregar usuario
   async getModal(opts: ModalOptions) {
     const modal = await this.modalCtrl.create(opts)
     await modal.present();
