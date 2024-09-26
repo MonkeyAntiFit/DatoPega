@@ -1,27 +1,30 @@
 import { Injectable, inject } from '@angular/core';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile,sendPasswordResetEmail } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { User } from '../models/user.model';
-import { doc, getDoc, getFirestore, setDoc } from '@angular/fire/firestore';
+import { addDoc, collection, doc, getDoc, getFirestore, setDoc } from '@angular/fire/firestore';
+import { UtilsService } from './utils.service';
+import { getDownloadURL, getStorage, ref, uploadString } from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
-  //importar los modulos
   auth = inject(AngularFireAuth);
   firestore = inject(AngularFirestore);
+  utilsService = inject(UtilsService);
+  dataRef:  AngularFirestoreCollection<User>;
 
   getAuth() {
     return getAuth();
   }
-  //guarda el usuario
+
   signIn(user: User) {
     return signInWithEmailAndPassword(getAuth(), user.email, user.password);
   }
-  //llama al usuario valido
+
   signUp(user: User) {
     return createUserWithEmailAndPassword(getAuth(), user.email, user.password);
   }
@@ -41,6 +44,29 @@ export class FirebaseService {
   sendRecoveryEmail(email: string) {
     return sendPasswordResetEmail(getAuth(), email);
   }
+
+  signOut() {
+    getAuth().signOut();
+    localStorage.removeItem('user');
+    this.utilsService.routerlink('/auth');
+  }
+
+  addDocument(path: any, data: any) { // 'users/id/empleados'
+    return addDoc(collection(getFirestore(), path), data) // add guarda los datos
+  }
+
+  async updateImg(path: any, data_url: any) {
+    return uploadString(ref(getStorage(), path), data_url, 'data_url').then(() => {
+      return getDownloadURL(ref(getStorage(), path))
+    })
+  }
+
+  getCollectionData(path: any): AngularFirestoreCollection<User> {
+    this.dataRef = this.firestore.collection(path, ref => ref.orderBy('name', 'asc'))
+    return this.dataRef;
+  }
+
+
 
   constructor() { }
 }

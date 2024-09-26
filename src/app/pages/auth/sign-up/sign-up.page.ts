@@ -70,6 +70,7 @@ export class SignUpPage implements OnInit {
           this.utilsService.saveLocalStorage('user', this.form.value);
           this.utilsService.routerlink('main/home');
           this.form.reset();
+          //Funcion del seteo
            
         }).catch(error => {
           console.log(error);
