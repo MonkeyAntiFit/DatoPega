@@ -1,4 +1,4 @@
-<app-header [isModal]="true" title="Agregar"></app-header>
+<app-header [isModal]="true" [title]="employee ? 'Actualizar empleado': 'Agregar empleado' "></app-header>
 
 <ion-content>
   
@@ -29,11 +29,13 @@
         <!-- <div *ngIf="form.controls.name.errors?.['minLength']">El nombre debe contener 3 caracteres</div> -->
       </div>
 
+
       <app-login-input 
       autocomplete="salario" 
       type="number" 
       label="Salario" 
       [control]="form.controls.salario"
+      (ionInput) = "setNumberInput()"
       ></app-login-input>
 
       <div class="validators" *ngIf="form.controls.salario.errors && form.controls.salario.touched">
@@ -70,7 +72,7 @@
       
 
       <ion-button class="submit" type="submit" mode="ios"  [disabled]="form.invalid">
-      Agregar Empleado
+        {{employee ? 'Actualizar empleado': 'Agregar empleado'}}
       <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
       </ion-button>
 

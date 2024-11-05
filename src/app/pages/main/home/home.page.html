@@ -5,6 +5,13 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+  <ion-card mode="ios" color="warning" class="d-flex-center ion-text-center" *ngIf="!loading && employees ">
+    <div>
+      <h5> {{ employees.length }} </h5>
+      <p>Profesionales</p>
+    </div>
+  </ion-card>
+
   <ion-list *ngIf="!loading">
     <ion-item-sliding class="product-item" *ngFor="let empleado of employees">
       <ion-item>
@@ -12,7 +19,7 @@
           <img [src]="empleado.img" alt="">
         </ion-avatar>
         <ion-label>
-          <div class="name">{{ empleado.nombre }}</div>
+          <div class="name">{{ empleado.name }}</div>
           <div class="data">
             <strong>Salario: </strong> {{ empleado.salario| currency: 'CLP' }} <br>
             <strong>Cargo: </strong> {{ empleado.cargo }} <br>
@@ -22,11 +29,11 @@
       </ion-item>
 
       <ion-item-options>
-        <ion-item-option>
+        <ion-item-option (click)="addUpdateEmployee(empleado)">
           <ion-icon class="option-btn" name="create-outline"></ion-icon>
         </ion-item-option>
       
-        <ion-item-option color="danger">
+        <ion-item-option (click)="confirmDeleteEmployee(empleado)" color="danger">
           <ion-icon class="option-btn" name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -54,7 +61,7 @@
 
   <div class="empty" *ngIf="!loading && !employees.length">
     <ion-icon name="diamond-outline"></ion-icon>
-    <h3>No hay Servicios disponibles</h3>
+    <h3>No hay empleados disponibles</h3>
 
   </div>
 

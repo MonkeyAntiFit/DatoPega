@@ -3,9 +3,9 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, up
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { User } from '../models/user.model';
-import { addDoc, collection, doc, getDoc, getFirestore, setDoc } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getFirestore, setDoc, updateDoc } from '@angular/fire/firestore';
 import { UtilsService } from './utils.service';
-import { getDownloadURL, getStorage, ref, uploadString } from 'firebase/storage';
+import { deleteObject, getDownloadURL, getStorage, ref, uploadString } from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +66,22 @@ export class FirebaseService {
     return this.dataRef;
   }
 
+  // obtiene la ruta de la iagen con su url
+  async getFilePath( url: string) {
+    return ref(getStorage(), url).fullPath
+  }
 
+  updateDocument(path: any, data: any) {
+    return updateDoc(doc(getFirestore(), path), data);
+  }
+
+  deleteDocument(path: any){
+    return deleteDoc(doc(getFirestore(), path));
+  }
+
+  deleteFile(path: any){
+    return deleteObject(ref(getStorage(), path));
+  }
 
   constructor() { }
 }

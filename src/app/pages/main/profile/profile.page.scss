@@ -1,4 +1,4 @@
-ion-avatar {
+/*ion-avatar {
     width: 140px;
     height: 140px;
     margin: 0 auto;
@@ -21,4 +21,26 @@ h2 {
 .empty-icon {
     font-size: 140px;
     opacity: 30%;
+}
+*/
+
+.mantenimiento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #555;
+}
+
+.maintenance-icon {
+    font-size: 100px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+ion-avatar,
+.photo-btn,
+.cargo {
+    display: none;
 }
