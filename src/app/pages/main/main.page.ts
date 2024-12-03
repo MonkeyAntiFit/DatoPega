@@ -19,10 +19,9 @@ export class MainPage implements OnInit {
 
   pages = [
     { title: 'Inicio', url: '/main/home', icon: 'home-outline'},
-    { title: 'Perfil', url: '/main/profile', icon: 'person-outline'}
+    { title: 'Perfil', url: '/main/profile', icon: 'person-outline'},
+    { title: 'Mensajeria', url: '/main/mensajeria', icon: 'help-circle-outline'}
   ]
-
-  
 // esto contiene la navegacion entre componentes
 //llamaremos a un evento
 // el evento debe ser suscrito a que refleje un evento de tipo any, seguido de la funcion flecha, si ya detecto algo, entonces se desplazará hacia ese componente. Se crea una condicional IF que diga: si existe este evento?, entonces si existe esa url a la que se intenta entrar, entonces se desplazará.

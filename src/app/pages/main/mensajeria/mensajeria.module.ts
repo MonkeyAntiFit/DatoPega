@@ -2,18 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ForgotPasswordPageRoutingModule } from './forgot-password-routing.module';
-import { ForgotPasswordPage } from './forgot-password.page';
+import { MensajeriaPageRoutingModule } from './mensajeria-routing.module';
+import { MensajeriaPage } from './mensajeria.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ForgotPasswordPageRoutingModule,
+    MensajeriaPageRoutingModule,
     SharedModule
   ],
-  declarations: [ForgotPasswordPage]
+  declarations: [MensajeriaPage]
 })
-export class ForgotPasswordPageModule {}
+export class MensajeriaPageModule {}

@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 import { map } from 'rxjs';
 import { Employees } from 'src/app/models/employees.model';
 import { User } from 'src/app/models/user.model';
@@ -19,7 +20,7 @@ export class HomePage implements OnInit {
   loading: boolean = false;
   employees: Employees[] = [];
 
-  constructor() { }
+  constructor(private emailComposer: EmailComposer) { }
 
   ngOnInit() {
     this.getEmployee()

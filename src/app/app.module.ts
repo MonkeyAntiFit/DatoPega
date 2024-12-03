@@ -8,6 +8,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDpoQN4HSRw7CkTDqLYAm7btvGiJ2d3QAo",
@@ -30,7 +31,7 @@ initializeApp(firebaseConfig);
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },EmailComposer],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
