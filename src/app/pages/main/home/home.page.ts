@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   loading: boolean = false;
   employees: Employees[] = [];
 
-  constructor(private emailComposer: EmailComposer) { }
+  constructor() {  }
 
   ngOnInit() {
     this.getEmployee()

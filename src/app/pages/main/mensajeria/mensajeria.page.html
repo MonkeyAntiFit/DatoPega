@@ -1,13 +1,43 @@
 <app-header [showMenu]="true" title="Mensajeria"></app-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">Asunto</ion-label>
-    <ion-input type="text" [(ngModel)]="subject"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Mensaje</ion-label>
-    <ion-textarea [(ngModel)]="message"></ion-textarea>
-  </ion-item>
-  <ion-button expand="full" (click)="sendEmail()">Enviar Mensaje</ion-button>
+  <!-- Formulario de Mensajería -->
+  <form (ngSubmit)="sendEmail()" #emailForm="ngForm">
+    <ion-item>
+      <ion-label position="floating">Asunto</ion-label>
+      <ion-input 
+        type="text" 
+        [(ngModel)]="subject" 
+        name="subject" 
+        required 
+        #subjectInput="ngModel">
+    </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mensaje</ion-label>
+      <ion-textarea 
+        [(ngModel)]="message" 
+        name="message" 
+        required 
+        #messageInput="ngModel">
+      </ion-textarea>
+    </ion-item>
+
+    <!-- Botón de Enviar, deshabilitado si el formulario no es válido -->
+    <ion-button 
+      expand="full" 
+      type="submit" 
+      [disabled]="!emailForm.valid">
+      Enviar Mensaje
+    </ion-button>
+
+    <!-- Mensaje de error si algún campo no está completo -->
+    <div *ngIf="subjectInput.invalid && subjectInput.touched" class="error-message">
+      El asunto es requerido.
+    </div>
+    <div *ngIf="messageInput.invalid && messageInput.touched" class="error-message">
+      El mensaje es requerido.
+    </div>
+  </form>
 </ion-content>

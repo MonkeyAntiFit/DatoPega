@@ -1,10 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EmailComposerOptions } from '@awesome-cordova-plugins/email-composer';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { UtilsService } from 'src/app/services/utils.service';
-
-import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
+import { Component } from '@angular/core';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'app-mensajeria',
@@ -15,22 +10,22 @@ export class MensajeriaPage {
   subject: string = '';
   message: string = '';
 
-  constructor(private emailComposer: EmailComposer) {}
+  constructor(private emailService: EmailService) {}
 
   sendEmail() {
-    const email = {
-      to: 'ben.marchant@duocuc.cl',
+    const templateParams = {
       subject: this.subject,
-      body: this.message,
-      isHtml: true,
+      message: this.message,
+      to_email: 'ben.marchant@duocuc.cl', // Correo del destinatario
     };
 
-    this.emailComposer.isAvailable().then((available: boolean) => {
-      if (available) {
-        this.emailComposer.open(email);
-      } else {
-        alert('El servicio de correo no está disponible en este dispositivo.');
-      }
-    });
+    this.emailService.sendEmail(templateParams)
+      .then(() => {
+        alert('Correo enviado exitosamente.');
+      })
+      .catch((error) => {
+        console.error('Error al enviar correo:', error);
+        alert('Hubo un problema al enviar el correo.');
+      });
   }
 }
